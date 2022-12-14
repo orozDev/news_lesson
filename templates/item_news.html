@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}| {{ news.title }}{% endblock title %}
+{% block content %}
+    <div class="container px-5">
+
+            <div class="mb-4"><img src="{{ news.image.url }}" class="w-100" alt=""></div>
+            <div>Категория: {{ news.category.title }}</div>
+            <div>Дата добавление: {{ news.date }}</div>
+            <div>
+                <span>Теги:</span>
+                {% for tag in news.tags.all %}
+                      <a href="">{{ tag.title }}</a> /
+                {% endfor %}
+            </div>
+            <div class="mb-3"><h3>{{ news.title }}</h3></div>
+            <div class="mb-3">{{ news.content|safe }}</div>
+            <div><span>Просмотры:</span> {{ news.views }}</div>
+  
+    </div>
+  </main>
+  
+
+  {% if news.author == request.user %}
+    <div class="panel">
+      <a href="{% url 'delete_news' id=news.id %}">Удалить <i class="fa-solid fa-trash-can"></i></a>
+      <a href="{% url 'update_news' id=news.id %}">Редактировать <i class="fa-solid fa-pen-to-square"></i></a>
+    </div>
+  {% endif %}
+{% endblock content %}

@@ -1,0 +1,22 @@
+.panel{
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+}
+
+.panel a{
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 15px 18px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: .6s;
+}
+
+.panel a:hover{
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 19px -2px #0FCAEF;
+}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}| Добавление новостей{% endblock title %}
+{% block content %}
+
+<div class="album py-5 bg-light">
+    <div class="container py-5">  
+        <h3 class="mb-5 text-center">Добавление новостей</h3>
+
+        <form action="{% url 'create_news' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="id_title">Заголовок <span class="text-danger">*</span></label>
+                    <input type="text" name="title" id="id_title" class="form-control" required>
+                </div> 
+                <div class="col-md-6 col-12">
+                    <label for="id_iamge">Изображение <span class="text-danger">*</span></label>
+                    <input type="file" name="image" class="form-control" id="id_iamge" required>
+                </div>
+                <div class="col-md-6 col-12">
+                    <label for="id_category">Категория <span class="text-danger">*</span></label>
+                    <select name="category" class="form-control" id="id_category required">
+                        <option disabled selected>Выберите категорию</option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}">{{ category.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-12 py-3">
+                    <label for="id_tags">Теги <span class="text-danger">*</span></label>
+                    <div class="row" id="id_tags">
+                        {% for tag in tags %}
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+                                <input type="checkbox" value="{{ tag.id }}" id="id_tags_{{ tag.id }}" name="tags" >
+                                <label for="id_tags_{{ tag.id }}">{{ tag.title }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-12 mb-4">
+                    <label for="id_tags">Контетн <span class="text-danger">*</span></label>
+                    <textarea name="content" id="id_tags" class="form-control" rows="5" required></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success w-100">Добавить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

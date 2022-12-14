@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}| Регистрация{% endblock title %}
+{% block content %}
+  
+    <div class="container">
+        <h4 class="text-center mb-3">Регистрация</h4>
+        <form action="{% url 'registration' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12 mb-3"><input type="text" 
+                    name="username" 
+                    placeholder="Имя пользователя" 
+                    class="form-control" required>
+                </div>
+                <div class="col-sm-6 col-12 mb-3">
+                    <input type="text" name="first_name" 
+                    placeholder="Имя" 
+                        class="form-control" required>
+                </div>
+                <div class="col-sm-6 col-12 mb-3">
+                    <input type="text" name="last_name" 
+                    placeholder="Фамилия" 
+                        class="form-control" required>
+                </div>
+                <div class="col-12 mb-3"><input type="email" 
+                    placeholder="Адрес электронной почты" name="email" required 
+                        class="form-control"></div>
+                <div class="col-sm-6 col-12 mb-3">
+                    <input type="password" class="form-control" 
+                    placeholder="Придумайте пароль" name="password" 
+                    id="password1" required>
+                </div>
+                <div class="col-sm-6 col-12 mb-3">
+                    <input type="password" class="form-control" 
+                    placeholder="Подтверждение пароля" 
+                    id="password2" required>
+                </div>
+                <div class="col-12 mb-3" id="message">
+
+                </div>
+                <div class="col-12">
+                    <input type="submit"  
+                        id="submit"
+                        disabled
+                        class="btn btn-primary w-100" 
+                        value="Зарегистрироваться">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+{% endblock content %}
